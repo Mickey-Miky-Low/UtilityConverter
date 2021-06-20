@@ -20,17 +20,18 @@ IMAGE
 
 def toPNG(path, outputPath):
     image = Image.open(path)
-    image.save("output.png")
+    image.save(outputPath + getFileName(path) + ".png")
 
 def toJPG(path, outputPath):
     image = Image.open(path)
     #Removes the transparency not supported by the JPEG format
     image = image.convert('RGB')
-    image.save("output.jpg")
+    print(outputPath + getFileName(path) + ".jpg")
+    image.save(outputPath + getFileName(path) + ".jpg")
 
 def toPDF(path, outputPath):
     image = Image.open(path)
-    image.save("output.pdf")
+    image.save(outputPath + getFileName(path) + ".pdf")
 
 
 """
@@ -41,7 +42,7 @@ TEXT
 
 #TODO : Make it windows only
 def docxToPDF(path, outputPath):
-    convert(path, "./output.pdf")
+    convert(path, outputPath + getFileName(path) + ".pdf")
 
 
 """
@@ -125,7 +126,7 @@ def convertFile(path, conversionMode, input, output):
     except:
         print("Le dossier existe déjà")
 
-    outputPath = "./output"
+    outputPath = "./output/"
 
     #No conversion mode selected
     if conversionMode == -1:
@@ -180,8 +181,28 @@ def getFileName(file):
         print(name + "\n") 
         count += 1
     
-    print(name)
+    name = removeExtension(name)
 
-file = "/home/william/Images/Capture d’écran de 2021-03-15 10-23-17.png"
-getFileName(file)
+    return name
+
+
+"""
+Removes the extension of the namefile
+"""
+def removeExtension(file):
+    letter = ''
+    name = ""
+    count = 1
+
+    while True:
+        letter = file[len(file)-count]
+        count += 1
+        if letter == '.':
+            break
+    
+    count -= 1
+    for i in range (0,len(file)-count):
+        name = name + file[i] 
+    
+    return name
 
