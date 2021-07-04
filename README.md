@@ -31,4 +31,4 @@ Please note that the optional settings are not implemented yet.
 
 # The main interface
 
-![alt text](https://github.com/Mickey-Miky-Low/UtilityConverter/blob/master/interface.png?raw=true)
+![Interface](screenshots/interface.jpg?raw=true)
